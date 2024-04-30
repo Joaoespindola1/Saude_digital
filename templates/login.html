@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Login</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha"><br>
+            <button type="submit">Entrar</button>
+        </form><br>
+        <a href="cadastro_clientes"><button class="btn-cad">Cadastro de Clientes</button></a>
+        <a href="cadastro_corretores"><button class="btn-cad">Cadastro de Corretores</button></a>
+    </main>
+</body>
+</html>
