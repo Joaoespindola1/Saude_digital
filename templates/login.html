@@ -9,6 +9,18 @@
 <body>
     <main class="container">
         <h1>Login</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Seu formulário de login aqui -->
+        
         <form action="/login" method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email"><br>

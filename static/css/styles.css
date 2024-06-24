@@ -69,3 +69,39 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+.col-nome {
+    width: 40%; /* Definindo largura para o nome */
+}
+.col-email {
+    width: 30%; /* Definindo largura para o email */
+}
+.col-numero {
+    width: 30%; /* Definindo largura para o número de registro */
+}

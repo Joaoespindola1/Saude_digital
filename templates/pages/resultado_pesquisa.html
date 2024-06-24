@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Resultado da Pesquisa</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Resultado da Pesquisa</h1>
+        <a href="{{ url_for('home') }}">Voltar para a Página Inicial</a><br><br>
+        {% if corretores %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Número de Registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for corretor in corretores %}
+                        <tr>
+                            <td>{{ corretor[0] }}</td>
+                            <td>{{ corretor[1] }}</td>
+                            <td>{{ corretor[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum corretor encontrado.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

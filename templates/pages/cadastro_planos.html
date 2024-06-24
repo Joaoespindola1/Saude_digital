@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Cadastro de Planos Atendidos</title>
+</head>
+<body>
+    <main class="container">
+        <h1>Cadastro de Planos Atendidos</h1>
+        <a href="{{ url_for('home') }}">Voltar para a Página Inicial</a><br><br>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2>Planos Disponíveis</h2>
+        <form action="{{ url_for('cadastro_planos') }}" method="POST">
+            <label for="plano_id">Selecionar Plano:</label>
+            <select id="plano_id" name="plano_id" required>
+                {% for plano in planos_disponiveis %}
+                    <option value="{{ plano[0] }}">{{ plano[1] }} - {{ plano[2] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Adicionar Plano</button>
+        </form>
+
+        <h2>Planos Cadastrados</h2>
+        {% if planos_cadastrados %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Plano</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plano in planos_cadastrados %}
+                        <tr>
+                            <td>{{ plano[0] }}</td>
+                            <td>{{ plano[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum plano cadastrado.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
