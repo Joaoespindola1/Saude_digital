@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 400px;
+    max-width: 550px;
     margin: 200px auto;
     padding: 20px;
     background-color: #fff;
@@ -104,4 +104,8 @@ th {
 }
 .col-numero {
     width: 30%; /* Definindo largura para o número de registro */
+}
+
+select{
+    margin: 1rem 0;
 }

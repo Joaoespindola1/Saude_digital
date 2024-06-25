@@ -6,7 +6,7 @@ app.secret_key = 'chave_super_secreta_aqui'
 
 app.config['MYSQL_HOST'] = 'localhost'  
 app.config['MYSQL_USER'] = 'root'  
-app.config['MYSQL_PASSWORD'] = '2114'  
+app.config['MYSQL_PASSWORD'] = '24534152'  
 app.config['MYSQL_DB'] = 'saude_digital'  
 
 mysql = MySQL(app)
@@ -59,12 +59,22 @@ def pesquisar_corretores():
     if request.method == 'POST':
         termo_pesquisa = request.form['termo_pesquisa']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT nome, email, numero_registro FROM corretores WHERE nome LIKE %s OR email LIKE %s", (f'%{termo_pesquisa}%', f'%{termo_pesquisa}%'))
+        # Consulta para buscar corretores e seus respectivos planos de saúde
+        cur.execute("""
+            SELECT c.nome, c.email, c.numero_registro, GROUP_CONCAT(ps.nome_plano SEPARATOR ', ') AS planos
+            FROM corretores c
+            LEFT JOIN corretores_planos cp ON c.id = cp.corretor_id
+            LEFT JOIN planos_saude ps ON cp.plano_id = ps.id
+            WHERE c.nome LIKE %s OR c.email LIKE %s
+            GROUP BY c.id
+        """, (f'%{termo_pesquisa}%', f'%{termo_pesquisa}%'))
         corretores = cur.fetchall()
         cur.close()
         return render_template('pages/resultados_pesquisa.html', corretores=corretores)
 
     return render_template('pages/pesquisar_corretores.html')
+
+
 
 @app.route('/cadastro_planos', methods=['GET', 'POST'])
 def cadastro_planos():

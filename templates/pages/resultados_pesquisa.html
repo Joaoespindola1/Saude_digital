@@ -16,6 +16,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Email</th>
+                        <th>Planos de Saúde</th>
                         <th>Número de Registro</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                         <tr>
                             <td>{{ corretor[0] }}</td>
                             <td>{{ corretor[1] }}</td>
+                            <td>{{ corretor[3] if corretor[3] else 'Nenhum plano cadastrado' }}</td>
                             <td>{{ corretor[2] }}</td>
                         </tr>
                     {% endfor %}

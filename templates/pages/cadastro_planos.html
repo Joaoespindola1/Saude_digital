@@ -25,9 +25,14 @@
         <form action="{{ url_for('cadastro_planos') }}" method="POST">
             <label for="plano_id">Selecionar Plano:</label>
             <select id="plano_id" name="plano_id" required>
-                {% for plano in planos_disponiveis %}
-                    <option value="{{ plano[0] }}">{{ plano[1] }} - {{ plano[2] }}</option>
-                {% endfor %}
+                {% if planos_disponiveis %}
+                    {% for plano in planos_disponiveis %}
+                        <option value="{{ plano[0] }}">{{ plano[1] }} - {{ plano[2] }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option disabled>Nenhum plano disponível</option>
+                {% endif %}
+
             </select>
             <button type="submit">Adicionar Plano</button>
         </form>
